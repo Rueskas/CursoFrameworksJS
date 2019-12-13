@@ -7,6 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Maquetacion</title>
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <script type="text/Javascript">
+    window.addEventListener("load", function(event){
+
+        var template = document.getElementById("article-template");
+        var articles = document.getElementById("articles")
+        for(var i = 0; i < 5 ; i++){
+            var clone = template.cloneNode(true);
+            clone.removeAttribute("id");
+            var h2 = clone.getElementsByTagName("h2")[0]
+            h2.innerHTML = h2.textContent + " " + i;
+            articles.appendChild(clone);
+        }
+    });
+    </script>
+
 </head>
 
 <body>
@@ -15,11 +30,10 @@
             <div id="logo">
                 <img src="assets/images/react.svg" alt="logo" class="app-logo">
                 <span id="brand">
-                    <strong>Curso</strong>FrameworksJS
+                    <strong>Curso</strong>React
                 </span>
             </div>
-        </div>
-
+            
         <nav id="menu">
             <ul>
                 <li><a href="#">Inicio</a></li>
@@ -29,7 +43,58 @@
                 <li><a href="#">Pagina 2</a></li>
             </ul>
         </nav>
+
+        <!-- LIMPIAR FLOTANTES -->
+        <div class="clearfix"></div>
+        </div>
+
     </header>
+
+    <div id="slider" class="slider-big">
+        <h1>Bienvenido al curso en frameworks para Javascript</h1>
+        <a href="#" class = "btn-white">Ir al blog</a>
+    </div>
+
+    <div class="center">
+        <section id="content">
+            <h2>Últimos articulos</h2>
+            <div id="articles">
+                    <article class="article-item" id="article-template">
+                            <div class="image-wrap">
+                                <img src="assets/images/paisaje.jpg" alt="paisaje">
+                            </div>
+            
+                            <h2>Articulo de prueba</h2>
+                            <span class="date">Hace 5 min</span>
+                            <a href="#">Leer más...</a>
+                        </article>
+            </div>
+        </section>
+        <aside id="sidebar">
+            <div id="nav-blog" class="sidebar-item">
+                <h3>Puedes hacer esto</h3>
+                <a href="#" class="btn btn-success">Crear artículo</a>
+            </div>
+            <div id="na-search" class="sidebar-item">
+                    <h3>Buscador</h3>
+                    <p>Encuentra el articulo que buscas</p>
+                    <form action="">
+                        <input type="text" name="search">
+                        <input type="submit" name="submit" value="Buscar" class="btn">
+                    </form>
+                </div>
+        </aside>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <footer id="footer">
+        <div class="center">
+            <p>
+                &copy; Curso en frameworks para JavaScript
+            </p>
+        </div>
+    </footer>
 </body>
 
 </html>
