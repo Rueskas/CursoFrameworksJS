@@ -156,6 +156,12 @@ body{
     color: rgb(44, 44, 44);
 }
 
+.subheader{
+    font-size: 38px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
 #sidebar{
     width: 25%;
     float: left;
@@ -209,18 +215,49 @@ body{
     background:black;
 }
 
+.mid-form{
+    width: 50%;
+    margin: 0px auto;
+}
 
-input[type="text"]{
+.mid-form label{
+    display: block;
+    float: left;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+input[type="text"],
+textarea{
     width: 100%;
-    height: 30px;
+    min-height: 30px;
     border: 1px solider #ccc;
     padding: 3px;
     margin-bottom: 5px;
     transition: 300ms all;
 }
 
-input[type="text"]:focus{
+input[type="text"]:focus,
+textarea:focus{
     box-shadow: 0px 0px 5px #eee inset;
+}
+
+textarea{
+    width: 100%;
+    height: 150px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 300px;
+
+}
+
+.radiobuttons{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
 }
 
 #footer{
@@ -235,3 +272,68 @@ input[type="text"]:focus{
     margin: 0px;
     padding: 0px;
 }
+
+.article-item{
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: left;
+}
+
+.article-item .image-wrap{
+    width:130px;
+    height: 130px;
+    overflow: hidden;
+    float: left;
+    margin-right: 15px;
+    border: 1px solid #ccc;
+}
+
+.article-item .image-wrap img{
+    height: 100%;
+    text-align: center;
+}
+
+.article-item h2{
+    display: block;
+    widows: 100%;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 7px;
+}
+
+.article-item .date{
+    display: block;
+    width: 100%;
+    color: rgb(122, 122, 122);
+}
+
+.article-item a{
+    display: block;
+    color: #444;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.article-item a:hover{
+    text-decoration: underline;
+}
+
+.article-detail .image-wrap{
+    float: none;
+    width: 100%;
+    height: 300px;
+}
+
+.article-detail .image-wrap img{
+    width: 100%;
+    height: auto;
+}
+
+.article-detail .subheader{
+    margin-bottom: 0px;
+    margin-top: 15px;
+    border: none;
+}
+
