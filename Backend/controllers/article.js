@@ -1,6 +1,9 @@
 'use strict'
 
 var validator = require('validator');
+var fs = require('fs');
+var path = require('path');
+
 var Article = require('../models/article');
 
 var controller = {
@@ -123,8 +126,192 @@ var controller = {
             })
         });
 
-    }
+    },
 
+    update: (req, res) =>{
+        //Recoger el id
+        let articleId = req.params.id;
+
+        //Recoger los datos
+        let params = req.body;
+
+        //Validar datos
+        try{
+            var validate_title = !validator.isEmpty(params.title);
+            var validate_content = !validator.isEmpty(params.content);
+        }catch(error){
+            return res.status(404).send({
+                status: 'Error',
+                message: 'Faltan datos por enviar'
+            })
+        }
+
+        if(validate_title && validate_content){
+            //Find y update
+            Article.findByIdAndUpdate(articleId, params, {new: true})
+                .then( articleResult =>{
+                    //Devolver respuesta
+                    return res.status(200).send({
+                        stauts: 'Success',
+                        article: articleResult
+                    })
+                })
+                .catch(error =>{
+                    console.log(error);
+                    return res.status(404).send({
+                        status: 'Error',
+                        message: 'El articulo no se ha actualizado'
+                    })
+                })
+        } else{
+            return res.status(500).send({
+                status: 'Error',
+                message: 'Los datos no son validos'
+            })  
+        }
+    },
+
+    delete: (req, res) =>{
+        //Recoger el id
+        let articleId = req.params.id;
+
+        //Find y Delete
+        Article.findByIdAndDelete(articleId, {new: false})
+            .then(result =>{
+                if(result == null){
+                    return res.status(500).send({
+                        status: 'Error',
+                        message: 'No se ha borrado el articulo (Posiblemente no exista)'
+                    })
+                } else{
+                    return res.status(200).send({
+                        status: 'Success',
+                        article: result
+                    })
+                }
+            })
+            .catch(error =>{
+                return res.status(500).send({
+                    status: 'Error',
+                    message: 'No se ha borrado el articulo (Posiblemente no exista)'
+                })
+            })
+    },
+
+    search: (req, res) =>{
+        //Sacar el string a buscar
+        var searchString = req.params.search;
+        if(searchString == undefined){
+            searchString = "";
+        }
+
+        //Find
+        Article.find({"$or": [
+            {"title": { "$regex": searchString, "$options": "i"}},
+            {"content": { "$regex": searchString, "$options": "i"}}
+        ]})
+        .sort('-date')
+        .then(result =>{
+            if(result.length == 0){
+                return res.status(500).send({
+                    status: 'Error',
+                    message: 'No coincide ningun articulo'
+                })
+            }
+            else{
+                return res.status(200).send({
+                    status: 'Success',
+                    articles: result
+                })
+            }
+        })
+        .catch(error =>{
+            return res.status(404).send({
+                status: 'Error',
+                message: 'Error en la peticion'
+            })
+        })
+    },
+
+    upload: (req, res) =>{
+        //Configurar modulo connect/multiparty router/article.js (Hecho)
+
+        //Recoger fichero
+        var fileName = 'Imagen no subida';
+
+        if(!req.files || req.files == null){
+            return res.status(404).send({
+                status: 'Error',
+                message: fileName
+            })
+        }
+
+        //Conseguir nombre y extension del archivo
+        var filePath = req.files.file0.path;
+        var fileSplit;
+        try{
+            fileSplit = filePath.split('\\');
+            //Para linux y Mac
+            if(fileSplit.length != 3){
+                fileSplit = filePath.split('/');
+            }
+        } catch(error){
+            fileSplit = filePath.split('/');
+        }
+        console.log(fileSplit);
+
+        fileName = fileSplit[2];
+        
+        //Extension del fichero
+        var extensionSplit = fileName.split('.');
+        var fileExtension = extensionSplit[1];
+
+
+        //Comprobar la extension (solo imagenes)
+        if(fileExtension != 'png' && fileExtension != 'jpg' && fileExtension != 'jpeg' && fileExtension != 'gif'){
+            //Borrar el archivo 
+            fs.unlink(filePath, (error) =>{
+                return res.status(404).send({
+                    status: 'Error',
+                    message: 'Extension no valida'
+                })
+            })
+        }else{
+            //Buscar articulo y asignarle imagen
+            let articleId = req.params.id;
+            Article.findByIdAndUpdate(articleId, {image: fileName}, {new: true})
+                .then(result =>{
+                    return res.status(200).send({
+                        status: 'Success',
+                        article: result
+                    })
+                })
+                .catch(error =>{
+                    return res.status(404).send({
+                    status: 'Error',
+                    message: 'Error al subir la imagen'
+                    })
+                })
+        }
+
+    },
+
+    getImage: (req, res) =>{
+        console.log("Entra");
+        let file = req.params.image;
+        let pathFile = './upload/articles/' + file;
+
+        fs.exists(pathFile, (exists) =>{
+            if(exists){
+                return res.sendFile(path.resolve(pathFile))
+            } else{
+                return res.status(404).send({
+                    status: 'Error',
+                    message: 'La imagen no exists'
+                })
+            }
+        })
+    }
 }
 
 module.exports = controller;
