@@ -9,11 +9,11 @@
 
             <nav id="menu">
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="form.html">Formulario</a></li>
-                    <li><a href="#">Pagina 1</a></li>
-                    <li><a href="#">Pagina 2</a></li>
+                    <li><a [routerLink]="['/home']" [routerLinkActive]="['active']">Inicio</a></li>
+                    <li><a [routerLink]="['/blog']" [routerLinkActive]="['active']">Blog</a></li>
+                    <li><a [routerLink]="['/formulario']" [routerLinkActive]="['active']">Formulario</a></li>
+                    <li><a [routerLink]="['/peliculas']" [routerLinkActive]="['active']">Películas</a></li>
+                    <li><a [routerLink]="['/pagina-de-pruebas']" [routerLinkActive]="['active']">Página</a></li>
                 </ul>
             </nav>
 
