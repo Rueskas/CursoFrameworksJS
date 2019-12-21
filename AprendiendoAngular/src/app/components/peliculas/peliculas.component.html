@@ -17,8 +17,15 @@
             <p>Hay muchas peliculas</p>
         </div>
         <h2 class="subheader">Numero de peliculas: {{peliculas.length}}</h2>
-        
-        <p class="subheader" *ngIf="peliculaFavorita">Pelicula favorita: {{peliculaFavorita.title}}</p>
+        <div id="favorita" *ngIf="peliculaFavorita">
+            <h2 class="subheader">Pelicula Favorita</h2>
+            <h4>
+                {{peliculaFavorita.title | uppercase}}
+            </h4>
+            <h4>
+                {{peliculaFavorita.year | espar}}
+            </h4>
+        </div>
         <h2 class="subheader">Peliculas</h2>
         <div id="articles" *ngIf="peliculas">
             <div *ngFor="let pelicula of peliculas; let i = index;">
