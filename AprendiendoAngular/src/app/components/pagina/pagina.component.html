@@ -1,4 +1,11 @@
-<h2 class="subheader">Pagina de pruebas</h2>
+<app-slider [nombre]="'Paginas'" [size]="'small'"></app-slider>
+
+<div class="center">
+    <section id="content">
+        <h2 class="subheader">Paginas</h2>
+    </section>
+    <app-sidebar></app-sidebar>
+</div>
 <div *ngIf="name && surname; then siHayParametros else noHayParametros;">
 </div>
 

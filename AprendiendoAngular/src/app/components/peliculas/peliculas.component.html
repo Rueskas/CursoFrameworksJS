@@ -1,31 +1,31 @@
-<h2 class="subheader">Peliculas</h2>
+<app-slider [nombre]="'Peliculas'" [size]="'small'"></app-slider>
 
-<p>{{ titulo }}</p>
-<button (click)="cambiarTitulo()">Pulsame</button>
+<div class="center">
+    <section id="content">
+        <h2 class="subheader">Peliculas</h2>
+        <p>{{ titulo }}</p>
+        <button (click)="cambiarTitulo()">Pulsame</button>
 
-<hr />
 
-<!--
-<div *ngIf="peliculas.length <= 3">
-<p>No hay muchas peliculas</p>
-</div>
+        <hr />
 
-<div *ngIf="peliculas.length > 3">
-<p>Hay muchas peliculas</p>
-</div> 
--->
-<h2 class="subheader">Numero de peliculas: {{peliculas.length}}</h2>
-<h2 class="subheader">Peliculas</h2>
-<div id="articles" *ngIf="peliculas">
-    <article class="article-item" id="article-template" *ngFor="let pelicula of peliculas; let i = index;">
-        <div class="image-wrap">
-            <img src="{{pelicula.image}}" alt="{{pelicula.title}}">
+        <div *ngIf="peliculas.length <= 3">
+            <p>No hay muchas peliculas</p>
         </div>
 
-        <h2>{{i}}. {{pelicula.title}}</h2>
-        <span class="year" 
-        [ngClass]="{'year-green': pelicula.year > 2016, 'year-red': pelicula.year <= 2016}">{{pelicula.year}}</span>
-        <a href="#">Leer más</a>
-        <div class="clearfix"></div>
-    </article>
+        <div *ngIf="peliculas.length > 3">
+            <p>Hay muchas peliculas</p>
+        </div>
+        <h2 class="subheader">Numero de peliculas: {{peliculas.length}}</h2>
+        
+        <p class="subheader" *ngIf="peliculaFavorita">Pelicula favorita: {{peliculaFavorita.title}}</p>
+        <h2 class="subheader">Peliculas</h2>
+        <div id="articles" *ngIf="peliculas">
+            <div *ngFor="let pelicula of peliculas; let i = index;">
+                <app-pelicula [pelicula]="pelicula" (marcarFavorita)="mostrarFavorita(pelicula)"></app-pelicula>
+            </div>
+        </div>
+    </section>
+
+    <app-sidebar></app-sidebar>
 </div>

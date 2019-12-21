@@ -1,0 +1,12 @@
+<article class="article-item" id="article-template">
+    <div class="image-wrap">
+        <img src="{{pelicula.image}}" alt="{{pelicula.title}}">
+    </div>
+
+    <h2>{{pelicula.title}}</h2>
+    <span class="year"
+        [ngClass]="{'year-green': pelicula.year > 2016, 'year-red': pelicula.year <= 2016}">{{pelicula.year}}</span>
+    <a href="#">Leer más</a>
+    <button (click)="marcarComoFavorita($event, pelicula)">Seleccionar como favorita</button>
+    <div class="clearfix"></div>
+</article>
