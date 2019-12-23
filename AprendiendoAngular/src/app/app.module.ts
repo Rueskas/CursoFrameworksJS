@@ -19,6 +19,10 @@ import { ErrorComponent } from './components/error/error.component';
 import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import {EsParPipe} from './pipes/espar.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { ArticlesComponent } from './components/articles/articles.component';
+import { MomentModule } from 'angular2-moment';
+import { ArticleComponent } from './components/article/article.component';
+
 
 @NgModule({
   declarations: [
@@ -36,13 +40,16 @@ import { HttpClientModule } from '@angular/common/http';
     PaginaComponent,
     ErrorComponent,
     PeliculaComponent,
-    EsParPipe
+    EsParPipe,
+    ArticlesComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

@@ -99,7 +99,6 @@ var controller = {
     getArticle: (req, res) =>{
         //Recoger el id
         var articleId = req.params.id;
-        console.log(articleId);
 
         //Comprobar que existe
         if(!articleId || articleId == null){
@@ -157,7 +156,6 @@ var controller = {
                     })
                 })
                 .catch(error =>{
-                    console.log(error);
                     return res.status(404).send({
                         status: 'Error',
                         message: 'El articulo no se ha actualizado'
@@ -258,8 +256,6 @@ var controller = {
         } catch(error){
             fileSplit = filePath.split('/');
         }
-        console.log(fileSplit);
-
         fileName = fileSplit[2];
         
         //Extension del fichero
@@ -297,7 +293,6 @@ var controller = {
     },
 
     getImage: (req, res) =>{
-        console.log("Entra");
         let file = req.params.image;
         let pathFile = './upload/articles/' + file;
 

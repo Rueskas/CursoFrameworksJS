@@ -14,8 +14,16 @@ export class ArticuloService{
         this.url=Global.url;
     }
 
-    getArticle():Observable<any>{
-        console.log(this.url+"articles");
-        return this._http.get(this.url+"articles");
+    getArticles(last: any = null):Observable<any>{
+        var articles = "articles";
+        if(last != null){
+            articles += "/true";
+        }
+        return this._http.get(this.url+articles);
+    }
+
+    getArticle(id: string):Observable<any>{
+        var articles = "article/"+id;
+        return this._http.get(this.url+articles);
     }
 }
