@@ -155,7 +155,7 @@ var controller = {
                 .then( articleResult =>{
                     //Devolver respuesta
                     return res.status(200).send({
-                        stauts: 'Success',
+                        status: 'Success',
                         article: articleResult
                     })
                 })

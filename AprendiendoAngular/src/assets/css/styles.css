@@ -402,6 +402,10 @@ textarea{
     border: none;
 }
 
+.image-thumb img{
+    margin-top: 15px;
+     width: 150px;
+}
 
 /* RESPONSIVE */
 
