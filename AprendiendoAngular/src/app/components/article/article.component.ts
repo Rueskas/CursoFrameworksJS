@@ -3,6 +3,7 @@ import { Articulo } from 'src/app/models/articulo';
 import { ArticuloService } from 'src/app/services/articulo.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from 'src/app/services/global';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-article',
@@ -18,24 +19,24 @@ export class ArticleComponent implements OnInit {
     private _articuloService: ArticuloService,
     private _router: Router,
     private _route: ActivatedRoute
-  ) { 
+  ) {
     this.url = Global.url;
   }
 
   ngOnInit() {
     this._route.params.subscribe(
-      params =>{
+      params => {
         let id = params['id'];
 
         this._articuloService.getArticle(id).subscribe(
-          response =>{
-            if(response.article){
+          response => {
+            if (response.article) {
               this.article = response.article;
-            } else{
+            } else {
               this._router.navigate(['/home']);
             }
           },
-          error =>{
+          error => {
             console.log(error);
           }
         )
@@ -43,17 +44,37 @@ export class ArticleComponent implements OnInit {
     )
   }
 
-  delete(id){
-    this._articuloService.deleteArticle(id).subscribe(
-      response => {
-        if(response.status = "Success"){
-          this._router.navigate(['/blog']);
+  delete(id) {
+    swal({
+      title: "¿Estás seguro?",
+      text: "Una vez borrado el articulo, no podras recuperarlo",
+      icon: "warning",
+      buttons: [true, true],
+      dangerMode: true
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+
+          this._articuloService.deleteArticle(id).subscribe(
+            response => {
+              if (response.status = "Success") {
+                swal("El articulo se ha eliminado", {
+                  icon: "success",
+                });
+                this._router.navigate(['/blog']);
+              }
+            },
+            error => {
+              swal("El articulo no se ha eliminado", {
+              icon: "error",
+            });
+              this._router.navigate(['/blog']);
+            }
+          )
+        } else {
+          swal("El articulo no se ha eliminado");
         }
-      },
-      error =>{
-        this._router.navigate(['/blog']);
-      }
-    )
+      });
   }
 
 }

@@ -3,6 +3,7 @@ import { Articulo } from 'src/app/models/articulo';
 import { ArticuloService } from 'src/app/services/articulo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Global } from 'src/app/services/global';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-article-edit',
@@ -60,6 +61,8 @@ export class ArticleEditComponent implements OnInit {
         if (response.status == "Success") {
           this.status = response.status;
           this.article = response.article;
+           //Alerta
+           swal('Articulo editado', 'El articulo se ha editado correctamente', 'success');
           this._router.navigate(["/blog/article",this.article._id]);
         } else {
           this.status = response.status;
@@ -67,6 +70,8 @@ export class ArticleEditComponent implements OnInit {
       },
       error => {
         this.status = error.status;
+        
+        swal('Articulo no editado', 'El articulo no se ha editado', 'error');
       }
     )
   }
