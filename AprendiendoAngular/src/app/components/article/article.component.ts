@@ -43,4 +43,17 @@ export class ArticleComponent implements OnInit {
     )
   }
 
+  delete(id){
+    this._articuloService.deleteArticle(id).subscribe(
+      response => {
+        if(response.status = "Success"){
+          this._router.navigate(['/blog']);
+        }
+      },
+      error =>{
+        this._router.navigate(['/blog']);
+      }
+    )
+  }
+
 }
