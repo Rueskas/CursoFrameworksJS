@@ -3,19 +3,18 @@
 <div class="center">
     <section id="content">
         <h2 class="subheader">Paginas</h2>
+        <div *ngIf="name && surname; then siHayParametros; else noHayParametros;">
+        </div>
+        <ng-template #siHayParametros>
+            <p>El nombre es {{name}}</p>
+            <p>El apellido es {{surname}}</p>
+        </ng-template>
+
+        <ng-template #noHayParametros>
+            <p>No existen datos para mostrar</p>
+        </ng-template>
+
+        <button (click)="redirect()" class="btn center btn-success">Ponme nombre y apellido</button>
     </section>
     <app-sidebar></app-sidebar>
 </div>
-<div *ngIf="name && surname; then siHayParametros else noHayParametros;">
-</div>
-
-<ng-template #siHayParametros>
-    <p>El nombre es {{name}}</p>
-    <p>El apellido es {{surname}}</p>
-</ng-template>
-
-<ng-template #noHayParametros>
-    <p>No existen datos para mostrar</p>
-</ng-template>
-
-<button (click)="redirect()" class="btn center btn-success">Ponme nombre y apellido</button>

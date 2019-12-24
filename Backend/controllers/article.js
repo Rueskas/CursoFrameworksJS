@@ -38,10 +38,14 @@ var controller = {
 
         if(validate_title && validate_content){
             //Crear el objeto 
+            let img = null;
+            if(params.image){
+                img = params.image
+            }
             var article = new Article({
                 title: params.title,
                 content: params.content,
-                image: null
+                image: img
             });
             //Guardar
             article.save()
@@ -238,6 +242,7 @@ var controller = {
         var fileName = 'Imagen no subida';
 
         if(!req.files || req.files == null){
+            console.log("file no");
             return res.status(404).send({
                 status: 'Error',
                 message: fileName
@@ -275,7 +280,9 @@ var controller = {
         }else{
             //Buscar articulo y asignarle imagen
             let articleId = req.params.id;
-            Article.findByIdAndUpdate(articleId, {image: fileName}, {new: true})
+
+            if(articleId){
+                Article.findByIdAndUpdate(articleId, {image: fileName}, {new: true})
                 .then(result =>{
                     return res.status(200).send({
                         status: 'Success',
@@ -288,6 +295,12 @@ var controller = {
                     message: 'Error al subir la imagen'
                     })
                 })
+            } else{
+                return res.status(200).send({
+                    status: 'Success',
+                    imageName: fileName
+                })
+            }
         }
 
     },
@@ -302,7 +315,7 @@ var controller = {
             } else{
                 return res.status(404).send({
                     status: 'Error',
-                    message: 'La imagen no exists'
+                    message: 'La imagen no existe'
                 })
             }
         })
