@@ -1,35 +1,23 @@
 import React from 'react';
-import logo from './assets/images/logo.svg';
 import './assets/css/App.css';
 
-import MiComponente from './components/MiCompontente';
-import Peliculas from './components/Peliculas';
-
-function HolaMundo(nombre, edad){
-  var presentacion = <div>
-    <h2>Hola soy {nombre}</h2>
-    <h3>Tento {edad} años</h3>
-  </div>
-  return presentacion;
-};
+import Header from './components/Header';
+import Slider from './components/Slider';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import SeccionPruebas from './components/SeccionPruebas';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        {
-          HolaMundo("sergio", 19)
-        }
-        <hr/>
-        <section className="componentes">
-          <MiComponente/>
-          <Peliculas/>
-        </section>
-      </header>
+      <Header />
+      <Slider />
+      <div className="center">
+        <SeccionPruebas/>
+        <Sidebar />
+        <div className="clearfix"></div>
+      </div>
+      <Footer />
     </div>
   );
 }

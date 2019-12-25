@@ -52,7 +52,7 @@ body{
 
 #brand{
   display: block;
-  margin: 0px;
+  margin-left: -10px;
   float: left;
 }
 
