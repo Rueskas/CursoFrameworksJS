@@ -9,7 +9,7 @@ class MiComponente extends Component {
             calorias: 1000
         }
         return (
-            <div className="MiComponente">
+            <div className="center">
                 <h1>{receta.nombre}</h1>
                 <ol>{
                     receta.ingredientes.map((ingrediente, i) => {

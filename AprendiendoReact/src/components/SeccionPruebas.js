@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MiComponente from './MiCompontente';
 
 class SeccionPruebas extends Component {
-    
+
     contador = 0;
 
     /* Primera Opcion
@@ -61,16 +61,16 @@ class SeccionPruebas extends Component {
             contador: this.contador--
         })
     }
-    
+
     render() {
         return (
-            <section id="content">
+            <React.Fragment>
                 <h2 className="subheader">Últimos articulos</h2>
                 <p>
                     Hola bienvenido al proyecto de React
                 </p>
 
-                
+
                 <h2 className="subheader">Funciones y JSX</h2>
                 {
                     this.HolaMundo("sergio", 19)
@@ -81,17 +81,16 @@ class SeccionPruebas extends Component {
                     <MiComponente />
                 </section>
 
-                
-                <h2 className="subheader">Estados</h2>
-                 <p>
-                     Contador {this.contador}
-                 </p>
-                 <p>
-                        <button onClick={this.sumar}>Sumar</button>
-                        <button onClick={this.restar}>Restar</button>
-                 </p>
-            </section>
 
+                <h2 className="subheader">Estados</h2>
+                <p>
+                    Contador {this.contador}
+                </p>
+                <p>
+                    <button onClick={this.sumar}>Sumar</button>
+                    <button onClick={this.restar}>Restar</button>
+                </p>
+            </React.Fragment>
         );
     }
 }

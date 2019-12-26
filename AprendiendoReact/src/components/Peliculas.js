@@ -81,7 +81,7 @@ class Peliculas extends Component {
         }
 
         return (
-            <div id="content" className="Peliculas">
+            <div className="Peliculas">
                 <h2 className="subheader">Películas</h2>
                 <p>Peliculas de {this.state.nombre}</p>
                 <button onClick={this.cambiarTitulo}>Cambiar titulo de Spiderman</button>
