@@ -292,6 +292,7 @@ textarea{
 
 .article-item .image-wrap img{
   height: 100%;
+  width: 100%;
   text-align: center;
 }
 
@@ -337,6 +338,17 @@ textarea{
   border: none;
 }
 
+.favorita{
+  background-color: green;
+  color: white;
+  padding: 10px;
+}
+
+.noFavorita{
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
 
 /* RESPONSIVE */
 

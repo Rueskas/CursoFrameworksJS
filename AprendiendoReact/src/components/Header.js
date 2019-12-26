@@ -5,9 +5,9 @@ class Header extends Component {
     render() {
         return (
             <header id="header">
-                <div class="center">
+                <div className="center">
                     <div id="logo">
-                        <img src={logo} alt="logo" class="app-logo" />
+                        <img src={logo} alt="logo" className="app-logo" />
                         <span id="brand">
                             <strong>Curso</strong>React
                 </span>
@@ -23,7 +23,7 @@ class Header extends Component {
                         </ul>
                     </nav>
 
-                    <div class="clearfix"></div>
+                    <div className="clearfix"></div>
                 </div>
 
             </header>
