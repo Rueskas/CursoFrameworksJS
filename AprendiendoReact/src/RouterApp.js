@@ -8,6 +8,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Blog from './components/Blog';
+import Formulario from './components/Formulario';
+
 
 class RouterApp extends Component {
 
@@ -22,6 +24,7 @@ class RouterApp extends Component {
                             <Route exact path="/home" component={Home} />
                             <Route exact path="/blog" component={Blog} />
                             <Route exact path="/peliculas" component={Peliculas} />
+                            <Route exact path="/formulario" component={Formulario} />
                             <Route exact path="/prueba2" component={MiComponente} />
                             <Route exact path="/pruebas/:nombre/:apellidos?" render={(props) => {
                                 var nombre = props.match.params.nombre;
