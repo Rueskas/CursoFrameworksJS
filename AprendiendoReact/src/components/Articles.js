@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Moment from 'react-moment';
 import 'moment/locale/es';
@@ -9,23 +9,27 @@ import ImageDefault from '../assets/images/default.png'
 class Articles extends Component {
 
     url = Global.url;
+
     state = {
         articles: [],
         status: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
+
         var home = this.props.home;
-        if(home == null){
-            this.getArticles();
-        } else{
+        var search = this.props.search;
+
+        if (home != null && home != undefined) {
+            this.getLastArticles();
+        } else if (search != null && search != undefined) {
+            this.searchArticles(search);
+        } else {
             this.getLastArticles();
         }
     }
 
-
     getArticles = () => {
-        
         axios.get(this.url + "articles")
             .then(res => {
                 this.setState({
@@ -35,13 +39,12 @@ class Articles extends Component {
             })
             .catch(error => {
                 this.setState({
-                    status: error.data.status
+                    status: 'Error'
                 })
             });
     }
 
     getLastArticles = () => {
-        
         axios.get(this.url + "articles/last")
             .then(res => {
                 this.setState({
@@ -51,7 +54,24 @@ class Articles extends Component {
             })
             .catch(error => {
                 this.setState({
-                    status: error.data.status
+                    status: 'Error'
+                })
+            });
+    }
+
+    searchArticles = (search) => {
+        console.log(search);
+        axios.get(this.url + "search/" + search)
+            .then(res => {
+                this.setState({
+                    articles: res.data.articles,
+                    status: res.data.status
+                })
+            })
+            .catch(error => {
+                this.setState({
+                    articles: [],
+                    status: 'Success'
                 })
             });
     }
@@ -60,25 +80,27 @@ class Articles extends Component {
 
         if (this.state.articles.length > 0) {
             var listArticles = this.state.articles.map(
-                (article) =>{
+                (article, i) => {
                     return (
-                        <article className="article-item" id="article-template">
-                        <div className="image-wrap">
-                        {
-                            article.image != null ? (
-                                <img src={this.url + 'get-image/' + article.image} alt={article.title}/>
-                            ) : (
-                                <img src={ImageDefault} alt={article.title}/>
-                            )
-                        }
-                           
-                        </div>
-        
-                        <h2>{article.title}</h2>
-                        <span className="date"><Moment fromNow>{article.date}</Moment></span>
-                        <Link to={'/blog/article/' + article._id}>Leer más</Link>
-                        <div className="clearfix"></div>
-                    </article>
+                        <React.Fragment>
+                            <article className="article-item" id="article-template" key={i}>
+                                <div className="image-wrap">
+                                    {
+                                        article.image != null ? (
+                                            <img src={this.url + 'get-image/' + article.image} alt={article.title} />
+                                        ) : (
+                                                <img src={ImageDefault} alt={article.title} />
+                                            )
+                                    }
+
+                                </div>
+
+                                <h2>{article.title}</h2>
+                                <span className="date"><Moment fromNow>{article.date}</Moment></span>
+                                <Link to={'/blog/article/' + article._id}>Leer más</Link>
+                                <div className="clearfix"></div>
+                            </article>
+                        </React.Fragment>
                     )
                 }
             )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import SeccionPruebas from './components/SeccionPruebas';
 import MiComponente from './components/MiCompontente';
 import Peliculas from './components/Peliculas';
@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Blog from './components/Blog';
 import Formulario from './components/Formulario';
+import Search from './components/Search';
+import Slider from './components/Slider';
 
 
 class RouterApp extends Component {
@@ -26,6 +28,13 @@ class RouterApp extends Component {
                             <Route exact path="/blog/article/:id" render ={() =>(
                                 <h1>Pagina de prueba</h1>
                             )}/>
+                            <Route exact path="/blog/busqueda/:search" component={Search} />
+                            <Route exact path="/redirect/:search" render={
+                                (props) =>{
+                                    var search = props.match.params.search;
+                                    return (<Redirect to={"/blog/busqueda/"+search}/>) 
+                                }
+                            } />
                             <Route exact path="/peliculas" component={Peliculas} />
                             <Route exact path="/formulario" component={Formulario} />
                             <Route exact path="/prueba2" component={MiComponente} />
@@ -51,6 +60,7 @@ class RouterApp extends Component {
                             }
                             <Route exact path="/pagina1" render={() => (
                                 <React.Fragment>
+                                    <Slider className="slider-small" title="Pagina 1"/>
                                     <h1>Hola mundo desde la pagina1</h1>
                                     <MiComponente />
                                 </React.Fragment>
