@@ -117,7 +117,7 @@ var controller = {
         Article.findById(articleId, (error, article) =>{
             if(error || !article){
                 console.log(error);
-                return res.status(404).send({
+                return res.status(200).send({
                     status: 'Error',
                     message: 'No existe el articulo'
                 })
@@ -125,7 +125,7 @@ var controller = {
 
             return res.status(200).send({
                 status: 'Success',
-                article
+                article: article
             })
         });
 

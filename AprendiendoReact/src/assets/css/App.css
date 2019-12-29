@@ -85,6 +85,32 @@ body{
   color: #3cb2d3
 }
 
+
+.btn-warning{
+  background-color: rgb(238, 165, 6) !important;
+  color:white !important;
+  text-decoration: none;
+}
+.btn-warning:hover{
+  transition: all 300ms;
+  opacity: 0.8;
+}
+
+.btn-danger{
+  background-color: red !important;
+  color:white !important;
+  text-decoration: none;
+}
+
+.btn-danger:hover{
+  transition: all 300ms;
+  opacity: 0.8;
+}
+
+.buttons{
+  margin-top: 30px;
+}
+
 .active{
   border-bottom: 2px solid #3cb2d3 ;
 }

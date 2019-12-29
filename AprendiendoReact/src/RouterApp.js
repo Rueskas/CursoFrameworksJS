@@ -11,6 +11,7 @@ import Blog from './components/Blog';
 import Formulario from './components/Formulario';
 import Search from './components/Search';
 import Slider from './components/Slider';
+import Article from './components/Article';
 
 
 class RouterApp extends Component {
@@ -25,9 +26,7 @@ class RouterApp extends Component {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/home" component={Home} />
                             <Route exact path="/blog" component={Blog} />
-                            <Route exact path="/blog/article/:id" render ={() =>(
-                                <h1>Pagina de prueba</h1>
-                            )}/>
+                            <Route exact path="/blog/article/:id" component={Article}/>
                             <Route exact path="/blog/busqueda/:search" component={Search} />
                             <Route exact path="/redirect/:search" render={
                                 (props) =>{
