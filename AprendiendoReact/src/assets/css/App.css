@@ -260,7 +260,8 @@ body{
 }
 
 input[type="text"],
-textarea{
+textarea,
+input[type="file"]{
   width: 100%;
   min-height: 30px;
   border: 1px solider #ccc;
@@ -284,9 +285,19 @@ textarea{
 
 }
 
+input[type="submit"]{
+  margin-top: 15px;
+}
+
 .radiobuttons{
   margin-top: 10px;
   margin-bottom: 10px;
+  float: left;
+}
+
+.thumb{
+  display: block;
+  width: 170px;
   float: left;
 }
 

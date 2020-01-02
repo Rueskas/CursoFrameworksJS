@@ -116,7 +116,6 @@ var controller = {
 
         Article.findById(articleId, (error, article) =>{
             if(error || !article){
-                console.log(error);
                 return res.status(200).send({
                     status: 'Error',
                     message: 'No existe el articulo'
@@ -242,7 +241,6 @@ var controller = {
         var fileName = 'Imagen no subida';
 
         if(!req.files || req.files == null){
-            console.log("file no");
             return res.status(404).send({
                 status: 'Error',
                 message: fileName

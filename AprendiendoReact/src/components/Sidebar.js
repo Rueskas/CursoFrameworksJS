@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 class Sidebar extends Component {
     searchRef = React.createRef();
@@ -19,7 +19,7 @@ class Sidebar extends Component {
     
     render() {
 
-        if(this.state.redirect && this.state.search != ''){
+        if(this.state.redirect && this.state.search !== ''){
             return(
                 <Redirect to={"/redirect/"+this.state.search}/>
             )
@@ -29,7 +29,7 @@ class Sidebar extends Component {
             <aside id="sidebar">
                 <div id="nav-blog" className="sidebar-item">
                     <h3>Puedes hacer esto</h3>
-                    <a href="#" className="btn btn-success">Crear artículo</a>
+                    <Link to={'/blog/new'} className="btn btn-success">Crear Artículo</Link>
                 </div>
                 <div id="nav-search" className="sidebar-item">
                     <h3>Buscador</h3>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Redicrect, Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/es';
 import axios from 'axios';
 import Global from './Global';
 import Sidebar from './Sidebar';
 import ImageDefault from '../assets/images/default.png';
+import { Link, Redirect } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Article extends Component {
 
@@ -41,22 +42,52 @@ class Article extends Component {
         this.getArticle(id);
     }
 
+    deleteArticle = (articleId) => {
+        swal({
+            title: "¿Estas seguro?",
+            text: "Una vez borrado no podrás recuperar el articulo",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete(this.url + "article/" + articleId)
+                        .then(res => {
+                            this.setState({
+                                article: res.data.article,
+                                status: 'deleted'
+                            })
+                        })
+                    swal("Artículo borrado", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("El artículo no se ha borrado");
+                }
+            });
+
+    }
+
     render() {
+        if (this.state.status === "deleted") {
+            return (<Redirect to="/blog" />)
+        }
         if (this.state.article) {
             return (
                 <div className="center">
                     <section id="content">
                         <article className="article-item article-detail">
                             <div className="image-wrap">
-                            {
-                                this.state.article.image != null ? 
-                                (
-                                    <img src={this.url + 'get-image/' + this.state.article.image} alt={this.state.article.title} />
-                                ) : (
-                                    <img src={ImageDefault} alt={this.state.article.title} />
-                                )
-                            }
-                                
+                                {
+                                    this.state.article.image != null ?
+                                        (
+                                            <img src={this.url + 'get-image/' + this.state.article.image} alt={this.state.article.title} />
+                                        ) : (
+                                            <img src={ImageDefault} alt={this.state.article.title} />
+                                        )
+                                }
+
                             </div>
 
                             <h1 className="subheader">{this.state.article.title}</h1>
@@ -66,16 +97,20 @@ class Article extends Component {
                             <p>
                                 {this.state.article.content}
                             </p>
-                            <a href='#' className='btn btn-warning'>Editar</a>
-                            <a href='#' className='btn btn-danger'>Eliminar</a>
+                            <Link to={"/blog/edit/" + this.state.article._id} className='btn btn-warning'>Editar</Link>
+                            <button onClick={
+                                () => {
+                                    this.deleteArticle(this.state.article._id)
+                                }
+                            } className='btn btn-danger'>Eliminar</button>
 
-                        
+
                             <div className="clearfix"></div>
                         </article>
                     </section>
                     <Sidebar />
 
-                    <div class="clearfix"></div>
+                    <div className="clearfix"></div>
                 </div>
             );
         } else if (this.state.status != null) {
