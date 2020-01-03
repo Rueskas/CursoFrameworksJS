@@ -2,12 +2,20 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>{{text}}</h2>
+    <div style="background: red">
+      <MiComponente></MiComponente>
+    </div>
   </div>
 </template>
 
 <script>
+import MiComponente from './MiComponente.vue'
+
 export default {
   name: 'HelloWorld',
+  components: {
+    MiComponente
+  },
   props: {
     msg: String
   },
