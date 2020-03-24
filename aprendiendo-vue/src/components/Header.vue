@@ -10,11 +10,12 @@
             
         <nav id="menu">
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="form.html">Formulario</a></li>
-                <li><a href="#">Pagina 1</a></li>
-                <li><a href="#">Pagina 2</a></li>
+                <li><router-link to="/home" active-class="active">Inicio</router-link></li>
+                <li><router-link to="/blog" active-class="active">Blog</router-link></li>
+                <li><router-link to="/formulario"  active-class="active">Form</router-link></li>
+                <li><router-link to="/mi-componente" active-class="active">Pagina 1</router-link></li>
+                <li><router-link to="Peliculas"  active-class="active">Peliculas</router-link></li>
+                
             </ul>
         </nav>
 

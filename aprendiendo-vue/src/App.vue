@@ -1,31 +1,22 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Slider></Slider>
-    <div class="center">
-      <LastArticles></LastArticles>
-      <Sidebar></Sidebar>
-        <div class="clearfix"></div>
-    </div>
-    <Footer></Footer>
+
+    <router-view></router-view>
+
+    <FooterComponent></FooterComponent>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import Slider from "./components/Slider.vue";
-import Sidebar from "./components/Sidebar.vue";
-import LastArticles from "./components/LastArticles.vue";
-import Footer from "./components/Footer.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 
 export default {
   name: "app",
   components: {
     Header,
-    Slider,
-    Sidebar,
-    LastArticles,
-    Footer
+    FooterComponent
   }
 };
 </script>

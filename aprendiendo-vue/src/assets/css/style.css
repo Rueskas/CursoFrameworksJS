@@ -58,6 +58,22 @@ body{
     }
 }
 
+.yeargreen{
+    background-color: #09a330 !important;
+    color: white !important;
+    padding : 10px !important;
+    width: 111px !important;
+    text-align: center !important;
+}
+
+.yearred{
+    background-color: red !important;
+    color: white !important;
+    padding : 10px !important;
+    width: 111px !important;
+    text-align: center !important;
+}
+
 #brand{
     display: block;
     margin-left: -5px;
@@ -89,8 +105,9 @@ body{
     transition: 300ms all;
 }
 
-#menu a:hover{
-    color: #f13e3e
+#menu a:hover,
+#menu .active{
+    color: #078205;
 }
 
 #slider{

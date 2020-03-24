@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const app = require('./app');
 var port = 3900;
-const url = 'mongodb://localhost:27017/api_rest_blog'
+const url = 'mongodb://ugy4djksv704vevziaje:2rT93r2wgwiyoWVQoCsj@bviffbjz8pjyfc5-mongodb.services.clever-cloud.com:27017/bviffbjz8pjyfc5'
 const options = {
     userNewUrlParser: true
 }

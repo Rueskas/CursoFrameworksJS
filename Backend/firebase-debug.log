@@ -1,0 +1,28 @@
+[debug] [2020-01-20T08:55:04.740Z] ----------------------------------------------------------------------
+[debug] [2020-01-20T08:55:04.744Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Ruesk\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-01-20T08:55:04.745Z] CLI Version:   7.12.1
+[debug] [2020-01-20T08:55:04.745Z] Platform:      win32
+[debug] [2020-01-20T08:55:04.745Z] Node Version:  v12.13.1
+[debug] [2020-01-20T08:55:04.747Z] Time:          Mon Jan 20 2020 09:55:04 GMT+0100 (GMT+01:00)
+[debug] [2020-01-20T08:55:04.748Z] ----------------------------------------------------------------------
+[debug] [2020-01-20T08:55:04.748Z] 
+[debug] [2020-01-20T08:55:04.766Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-20T08:55:04.768Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Ruesk\Documents\Udemy\CursoFrameworksJS\Backend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 

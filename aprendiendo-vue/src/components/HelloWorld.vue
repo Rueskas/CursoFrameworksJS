@@ -1,30 +1,29 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>{{text}}</h2>
-    <div style="background: red">
-      <MiComponente></MiComponente>
+  <div id="general">
+    <div class="center">
+      <section id="content">
+        <h1 class="subheader">{{ text }}</h1>
+      </section>
+      <Sidebar></Sidebar>
+      <div class="clearfix"></div>
     </div>
   </div>
 </template>
 
 <script>
-import MiComponente from './MiComponente.vue'
+import Sidebar from "./Sidebar.vue";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   components: {
-    MiComponente
-  },
-  props: {
-    msg: String
+    Sidebar
   },
   data() {
     return {
       text: "Hola mundo desde componente"
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
