@@ -3,7 +3,6 @@
     <Header></Header>
 
     <router-view></router-view>
-
     <FooterComponent></FooterComponent>
   </div>
 </template>

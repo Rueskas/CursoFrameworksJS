@@ -1,35 +1,59 @@
 <template>
-  <div id="general">
-    <Slider texto="Bienvenido al curso en frameworks para Javascript" home="true"></Slider>
-    <div class="center">
-      <section id="content">
-        <h2 class="subheader">Últimos articulos</h2>
-        <div id="articles">
-          <article class="article-item" id="article-template">
-            <div class="image-wrap">
-              <img src="../assets/images/paisaje.jpg" alt="paisaje" />
-            </div>
-
-            <h2>Articulo de prueba</h2>
-            <span class="date">Hace 5 min</span>
-            <a href="#">Leer más</a>
-            <div class="clearfix"></div>
-          </article>
-        </div>
-      </section>
-      <Sidebar></Sidebar>
-      <div class="clearfix"></div>
+  <section id="articles-component">
+    <div id="general" v-if="articles && articles.length > 0">
+      <Slider texto="Bienvenido al curso en frameworks para Javascript" home="true"></Slider>
+      <div class="center">
+        <section id="content">
+          <h2 class="subheader">Últimos articulos</h2>
+          <div id="articles" v-if="articles">
+            <Articles :articles="articles"></Articles>
+          </div>
+        </section>
+        <Sidebar></Sidebar>
+        <div class="clearfix"></div>
+      </div>
     </div>
-  </div>
+    <div v-else-if="articles && articles <= 0">
+      No hay articulos para mostrar
+    </div>
+    <div v-else>
+      Cargando...
+    </div>
+  </section>
 </template>
 <script>
+import axios from "axios";
 import Slider from "./Slider.vue";
 import Sidebar from "./Sidebar.vue";
+import Articles from "./Articles.vue";
+import Global from "../Global";
+
 export default {
   name: "LastArticles",
   components: {
     Slider,
-    Sidebar
+    Sidebar,
+    Articles
+  },
+  data() {
+    return {
+      url: Global.url,
+      articles: null
+    };
+  },
+  methods: {
+    getLastArticles() {
+      axios.get(this.url + "articles/true").then(res => {
+        if (res.data.status == "Success") {
+          this.articles = res.data.articles;
+          console.log(res.data.articles);
+          console.log(this.articles);
+        }
+      });
+    }
+  },
+  mounted() {
+    this.getLastArticles();
   }
 };
 </script>

@@ -242,6 +242,22 @@ body{
     background:black;
 }
 
+.btn-warning{
+    background: rgb(245, 181, 4);
+    color: white !important;
+    text-align: center;
+}
+
+.btn-danger{
+    background: rgb(185, 16, 15);
+    color: white !important;
+    text-align: center;
+}
+
+.image-small{
+    width: 100px;
+}
+
 .mid-form{
     width: 50%;
     margin: 0px auto;
@@ -257,6 +273,7 @@ body{
 }
 
 input[type="text"],
+input[type="file"],
 textarea{
     width: 100%;
     min-height: 30px;
@@ -267,6 +284,7 @@ textarea{
 }
 
 input[type="text"]:focus,
+input[type="file"]:focus,
 textarea:focus{
     box-shadow: 0px 0px 5px #eee inset;
 }
